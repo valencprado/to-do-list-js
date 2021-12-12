@@ -1,0 +1,87 @@
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: Arial;
+    text-align: center;
+}
+
+h1 {
+    font-weight: bold;
+}
+
+.content {
+    background-color: #2b2a2a;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 450px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 55px;
+    border-radius: 12px;
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 35px;
+}
+
+.top input {
+    width: 350px;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #191818;
+    outline: none;
+    font-size: 1.2rem;
+    background: #191818;
+    color: #FFF;
+}
+
+.top button {
+    width: 150px;
+    border-radius: 12px;
+    border: 1px solid #191818;
+    outline: none;
+    background: #191818;
+    color: #FFF;
+}
+
+.top button:hover {
+    background-color: #1f1e1e;
+    cursor: pointer;
+}
+
+#btnAddTask {
+    margin-left: 35%;
+}
+
+#TaskList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#TaskList li {
+    padding: 20px;
+    background: #191818;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    margin-top: 25px;
+}
+
+.BtnAction {
+    border-radius: 20px;
+    border: 1px solid #191818;
+    width: 55px;
+    height: 88px;
+    margin-right: 8px;
+    cursor: pointer;
+    background: #2b2a2a;
+    color: #fff;
+    outline: none;
+}
+
+.BtnAction::hover {
+    background: #3c3a3a;
+}
