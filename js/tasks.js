@@ -1,76 +1,89 @@
-//recuperando pelo ID os elementos do HTML
-let InputNewTask = document.querySelector('#InputNewTask');
-let btnAddTask = document.querySelector('#btnAddTask');
-let TaskList = document.querySelector('#TaskList');
+// pegando elementos do documento
+let inputNovaTarefa = document.querySelector('#inputNomeTarefa')
+let btnAddTarefa = document.querySelector('#btnAddTarefa')
+let listaTarefa = document.querySelector('#listaTarefa')
 
-//input funcionando por meio do "enter"
-InputNewTask.addEventListener('keypress', (e) => {
+// evento
+inputNovaTarefa.addEventListener('keypress', (e) => {
+    // se a tecla clicada for o enter:
+    // objeto - dados da tabela
     if (e.keyCode == 13) {
-        let task = {
-            name: InputNewTask.value,
+        let tarefa = {
+            nome: inputNovaTarefa.value,
             id: gerarId(),
         }
-        AddTask('task');
+        adicionarTarefa(tarefa)
     }
+})
 
-});
-//botão 
-btnAddTask.addEventListener('click', (e) => {
-        let task = {
-            name: InputNewTask.value,
+// evento de clique ao botão
+btnAddTarefa.addEventListener('click', (e) => {
+    // objeto - dados da tabela
+    if (e.keyCode == 13) {
+        let tarefa = {
+            nome: inputNovaTarefa.value,
             id: gerarId(),
-
-
         }
-        AddTask('task')
-    })
-    // identificador único da task
+        adicionarTarefa(tarefa)
+    }
+})
+
+
 function gerarId() {
-    //random() gera o número aleatório e floor()arredonda para um número inteiro
-    //número entre 1 e 3000
-    return Math.floor(Math.random() * 3000);
+    // criação de um id aleatório para a tarefa
+    // número entre 1 e 3000 (random) arrendodado para baixo (floor)
+    return Math.floor(Math.random() * 3000)
+}
+// adicionar tarefa ao documento
+function adicionarTarefa(tarefa) {
+    // usando a função abaixo
+    inputNovaTarefa.value = ''
+    let li = criarTagLi(tarefa)
+        // adiciona a tag li no documento
+    listaTarefa.appendChild(li)
+
 }
 
-function AddTask(task) {
-    let li = CreateLiTag(task);
-    TaskList.appendChild(li);
-    InputNewTask.value = '';
+// criando a Li
+function criarTagLi(tarefa) {
+    let li = document.createElement('li')
+        // dentro da li -> span, div, dois botões
+
+    //span
+    let span = document.createElement('span')
+    span.classList.add('textoTarefa')
+    span.innerHTML = tarefa.nome
+
+    //div
+    let div = document.createElement('div')
+
+    // botões
+    let btnEditar = document.createElement('button')
+    btnEditar.classList.add('btnA')
+    btnEditar.innerHTML = ' <i class="fa fa-pencil"></i>'
+    btnEditar.setAttribute('onclick', 'editar(' + tarefa.id + ')')
+
+
+    let btnExcluir = document.createElement('button')
+    btnExcluir.classList.add('btnA')
+    btnExcluir.innerHTML = ' <i class="fa fa-trash"></i>'
+    btnExcluir.setAttribute('onclick', 'excluir(' + tarefa.id + ')')
+
+    // colocando os buttons na div
+    div.appendChild(btnEditar)
+    div.appendChild(btnExcluir)
+
+    // colocando tudo no li
+    li.appendChild(span)
+    li.appendChild(div)
+    return li
 }
 
-//criar toda a tag li
-function CreateLiTag(task) {
-    let li = document.createElement('li');
-    li.id = task.id;
+function editar(idTarefa) {
 
-    let span = document.createElement('span');
-    span.classList.add('TaskText');
-    span.innerHTML = task.name;
-
-    let div = document.createElement('div');
-
-    let BtnEdit = document.createElement('button');
-    BtnEdit.classList.add('BtnAction')
-    BtnEdit.innerHTML = 'Edit';
-    BtnEdit.setAttribute('onclick', 'edit(' + task.id + ')');
-
-
-    let BtnDelete = document.createElement('button');
-    BtnDelete.classList.add('BtnAction')
-    BtnDelete.innerHTML = 'Delete';
-    BtnDelete.setAttribute('onclick', 'delete(' + task.id + ')');
-
-    div.appendChild(BtnEdit);
-    div.appendChild(BtnDelete);
-
-    li.appendChild(span);
-    li.appendChild(div);
-    return li;
+    alert(idTarefa)
 }
 
-function edit(IdTask) {
-    alert(IdTask)
-}
-
-function Delete(IdTask) {
-    alert(IdTask)
+function excluir(idTarefa) {
+    alert(idTarefa)
 }
