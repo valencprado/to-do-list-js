@@ -92,6 +92,13 @@ h1 {
     background: #3c3a3a;
 }
 
+.textoTarefa {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0;
+}
+
 #janelaEdicaoFundo {
     position: fixed;
     top: 0;
