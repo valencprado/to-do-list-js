@@ -92,25 +92,7 @@ h1 {
     background: #3c3a3a;
 }
 
-#EditionWindow {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, 50%);
-    padding: 20px;
-    background: #191818;
-    border: 1px solid #2f2e2e;
-    width: 415px;
-    border-radius: 12px;
-    z-index: 200;
-    /* display: none;*/
-}
-
-#EditionWindow.open {
-    display: block !important;
-}
-
-#WindowEditionBackground {
+#janelaEdicaoFundo {
     position: fixed;
     top: 0;
     background-color: #000;
@@ -122,11 +104,29 @@ h1 {
     display: none;
 }
 
-#WindowEditionBackground.open {
+#janelaEdicaoFundo.abrir {
     display: block !important;
 }
 
-#BtnClose {
+#janelaEdicao {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #191818;
+    border: 1px solid #2f2e2e;
+    width: 415px;
+    border-radius: 12px;
+    z-index: 200;
+    display: none;
+}
+
+#janelaEdicao.abrir {
+    display: block !important;
+}
+
+#janelaEdicaoBtnFechar {
     position: absolute;
     top: 15px;
     right: 15px;
@@ -134,8 +134,10 @@ h1 {
     height: 50px;
     border-radius: 50%;
     border: 1px solid #2d2c2c;
-    background-color: #2d2c2c;
+    background: #2d2c2c;
+    color: #FFF;
     outline: none;
+    cursor: pointer;
 }
 
 form {
@@ -143,46 +145,39 @@ form {
     margin-top: 20px;
 }
 
-.frm-line {
+.frm-linha {
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
 }
 
-.frm-line label {
+.frm-linha label {
     margin-bottom: 7px;
 }
 
-.frm-line input {
+.frm-linha input {
     padding: 15px;
     border-radius: 12px;
     outline: none;
     border: 1px solid #191818;
     font-size: 1.2rem;
-    background: #2d2c2c;
+    background-color: #2d2c2c;
     color: #FFF;
 }
 
-.frm-line button {
+.frm-linha button {
     background: #2d2c2c;
     border: 1px solid #191818;
     padding: 7px;
     margin-bottom: 10px;
     border-radius: 12px;
-    color: #ccc;
+    color: #CCC;
     cursor: pointer;
     height: 50px;
     font-size: 1.3rem;
     outline: none;
 }
 
-.frm-line button:hover {
-    background: #3c3a3a;
-}
-
-#TaskText {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 290px;
-    white-space: nowrap;
+.frm-linha button hover {
+    background-color: #3c3a3a;
 }
