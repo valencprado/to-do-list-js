@@ -2,6 +2,12 @@
 let inputNovaTarefa = document.querySelector('#inputNomeTarefa')
 let btnAddTarefa = document.querySelector('#btnAddTarefa')
 let listaTarefa = document.querySelector('#listaTarefa')
+let janelaEdicao = document.querySelector('#janelaEdicao')
+let janelaEdicaoFundo = document.querySelector('#janelaEdicaoFundo')
+let janelaEdicaoBtnFechar = document.querySelector('#janelaEdicaoBtnFechar')
+let btnAtualizarTarefa = document.querySelector('#btnAtualizarTarefa')
+let idTarefaEdicao = document.querySelector('#idTarefaEdicao')
+let inputTarefaNome = document.querySelector('#inputTarefaNome')
 
 // evento
 inputNovaTarefa.addEventListener('keypress', (e) => {
@@ -16,6 +22,11 @@ inputNovaTarefa.addEventListener('keypress', (e) => {
     }
 })
 
+janelaEdicaoBtnFechar.addEventListener('click', (e) => {
+    alternarJanelaEdicao()
+})
+
+
 // evento de clique ao botão
 btnAddTarefa.addEventListener('click', (e) => {
     // objeto - dados da tabela
@@ -25,6 +36,24 @@ btnAddTarefa.addEventListener('click', (e) => {
             id: gerarId(),
         }
         adicionarTarefa(tarefa)
+    }
+})
+
+btnAtualizarTarefa.addEventListener('click', (e) => {
+    e.preventDefault()
+    let idTarefa = idTarefaEdicao.innerHTML.replace('#', '')
+    let tarefa = {
+        nome: inputTarefaNome.value,
+        id: idTarefa
+    }
+    let tarefaAtual = document.getElementById('' + idTarefa + '')
+
+    if (tarefaAtual) {
+        let li = criarTagLi(tarefa)
+        listaTarefa.replaceChild(li, tarefaAtual)
+        alternarJanelaEdicao()
+    } else {
+        alert('Elemento não encontrado!')
     }
 })
 
@@ -48,6 +77,10 @@ function adicionarTarefa(tarefa) {
 function criarTagLi(tarefa) {
     let li = document.createElement('li')
         // dentro da li -> span, div, dois botões
+
+    li.id = tarefa.id
+        // criando id para a tarefa
+
 
     //span
     let span = document.createElement('span')
@@ -80,10 +113,28 @@ function criarTagLi(tarefa) {
 }
 
 function editar(idTarefa) {
-
-    alert(idTarefa)
+    let li = document.getElementById('' + idTarefa + '')
+    if (li) {
+        idTarefaEdicao.innerHTML = '#' + idTarefa
+        inputTarefaNome.value = li.innerText
+        alternarJanelaEdicao()
+    } else {
+        alert('Elemento não encontrado!')
+    }
 }
 
 function excluir(idTarefa) {
-    alert(idTarefa)
+    let confirm = window.confirm('Tem certeza que deseja excluir? ')
+
+    if (confirm) {
+        let li = document.getElementById('' + idTarefa + '')
+        if (li) {
+            listaTarefa.removeChild(li)
+        }
+    }
+}
+
+function alternarJanelaEdicao() {
+    janelaEdicao.classList.toggle('abrir');
+    janelaEdicaoFundo.classList.toggle('abrir');
 }
